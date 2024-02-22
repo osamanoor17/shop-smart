@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SubtitleTextWidget(label: 'Hello '),
-            TitlesTextWidget(label: 'world',),
+            const TitlesTextWidget(label: 'world',),
             ElevatedButton(onPressed: () {}, child: const Text("Hello World")),
             SwitchListTile(
               title: Text(themeProvider.getIsDarkTheme? "Hello": "World"),

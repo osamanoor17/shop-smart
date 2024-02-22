@@ -38,6 +38,8 @@ dependencies:
   provider: ^6.1.1
   shared_preferences: ^2.2.2
   flutter_iconly: ^1.0.2
+  shimmer: ^3.0.0
+  fancy_shimmer_image: ^2.0.3
 
 dev_dependencies:
   flutter_test:

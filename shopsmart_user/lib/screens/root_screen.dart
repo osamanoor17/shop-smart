@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'cart_screen.dart';
+import 'cart/cart_screen.dart';
 import 'home_screen.dart';
 import 'profile_screen.dart';
 import 'search_screen.dart';
@@ -15,7 +15,7 @@ class RootScreen extends StatefulWidget {
 class _RootScreenState extends State<RootScreen> {
   late List<Widget> screens;
   late PageController controller;
-  int currentScreen = 3;
+  int currentScreen = 2;
 
   @override
   void initState() {
@@ -59,7 +59,12 @@ class _RootScreenState extends State<RootScreen> {
             selectedIcon: Icon(IconlyBold.search),
           ),
           NavigationDestination(
-            icon: Icon(IconlyLight.bag2),
+            icon: Badge(
+              backgroundColor: Colors.blue,
+
+              textColor: Colors.white,
+              label: Text('6'),
+              child: Icon(IconlyLight.bag2)),
             label: 'Cart',
             selectedIcon: Icon(IconlyBold.bag2),
           ),

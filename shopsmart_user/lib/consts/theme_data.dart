@@ -9,10 +9,10 @@ class Styles {
             ? AppColors.darkscafoldColor
             : AppColors.lightscafoldColor,
         cardColor: isDarkTheme
-            ? Color.fromARGB(255, 13, 6, 37)
+            ? const Color.fromARGB(255, 13, 6, 37)
             : AppColors.lightCardColor,
         brightness: isDarkTheme ? Brightness.dark : Brightness.light,
-        appBarTheme: AppBarTheme(
+        appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: isDarkTheme?Colors.white:Colors.black),
             backgroundColor: isDarkTheme
                 ? AppColors.darkscafoldColor
                 : AppColors.lightscafoldColor,

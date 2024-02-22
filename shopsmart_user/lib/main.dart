@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shopsmart_user/providers/theme_provider.dart';
 import 'package:shopsmart_user/screens/root_screen.dart';
 import 'consts/theme_data.dart';
-import 'screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: Styles.themeData(isDarkTheme:themeProvider.getIsDarkTheme,context:context),
-          home:  RootScreen(),
+          home:  const RootScreen(),
            );}), 
   
     );
