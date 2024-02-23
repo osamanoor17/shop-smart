@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "shopsmart_admin",
+            "cwd": "shopsmart_admin",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "shopsmart_admin (profile mode)",
+            "cwd": "shopsmart_admin",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "shopsmart_admin (release mode)",
+            "cwd": "shopsmart_admin",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "shopsmart_user",
+            "cwd": "shopsmart_user",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "shopsmart_user (profile mode)",
+            "cwd": "shopsmart_user",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "shopsmart_user (release mode)",
+            "cwd": "shopsmart_user",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

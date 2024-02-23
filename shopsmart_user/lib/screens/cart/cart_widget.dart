@@ -1,6 +1,7 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:shopsmart_user/consts/app_consts.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
@@ -22,8 +23,7 @@ class CartWidget extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: FancyShimmerImage(
-                  imageUrl:
-                      'https://i.ibb.co/8r1Ny2n/20-Nike-Air-Force-1-07.png',
+                  imageUrl: AppConsts.imageUrl,
                   height: size.height * 0.2,
                   width: size.height * 0.2,
                 ),

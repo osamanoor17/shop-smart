@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+
 import 'cart/cart_screen.dart';
-import 'home_screen.dart';
-import 'profile_screen.dart';
-import 'search_screen.dart';
+import 'home_screen/home_screen.dart';
+import 'profile/profile_screen.dart';
+import 'search/search_screen.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({Key? key}) : super(key: key);
@@ -15,16 +16,16 @@ class RootScreen extends StatefulWidget {
 class _RootScreenState extends State<RootScreen> {
   late List<Widget> screens;
   late PageController controller;
-  int currentScreen = 2;
+  int currentScreen = 0;
 
   @override
   void initState() {
     super.initState();
-    screens = const [
-      HomeScreen(),
-      SearchScreen(),
-      CartScreen(),
-      ProfileScreen()
+    screens = [
+      const HomeScreen(),
+      const SearchScreen(),
+      const CartScreen(),
+      const ProfileScreen(),
     ];
     controller = PageController(initialPage: currentScreen);
   }
@@ -32,7 +33,8 @@ class _RootScreenState extends State<RootScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(physics: const NeverScrollableScrollPhysics(),
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: controller,
         children: screens,
       ),
@@ -60,11 +62,10 @@ class _RootScreenState extends State<RootScreen> {
           ),
           NavigationDestination(
             icon: Badge(
-              backgroundColor: Colors.blue,
-
-              textColor: Colors.white,
-              label: Text('6'),
-              child: Icon(IconlyLight.bag2)),
+                backgroundColor: Colors.blue,
+                textColor: Colors.white,
+                label: Text('6'),
+                child: Icon(IconlyLight.bag2)),
             label: 'Cart',
             selectedIcon: Icon(IconlyBold.bag2),
           ),

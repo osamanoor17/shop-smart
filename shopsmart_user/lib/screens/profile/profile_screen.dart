@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
-import '../consts/cus_ListTile.dart';
-import '../providers/theme_provider.dart';
-import '../services/assets_manager.dart';
-import '../widgets/app_name_text.dart';
+import '../../consts/cus_ListTile.dart';
+import '../../providers/theme_provider.dart';
+import '../../services/assets_manager.dart';
+import '../../widgets/app_name_text.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -51,9 +51,9 @@ class ProfileScreen extends StatelessWidget {
                         border: Border.all(
                             color: Theme.of(context).colorScheme.background,
                             width: 3),
-                        image: const DecorationImage(
+                        image:  const DecorationImage(
                             image: NetworkImage(
-                                'https://p7.hiclipart.com/preview/722/101/213/computer-icons-user-profile-circle-abstract.jpg'),
+                                'https://i.ibb.co/NnJvgYq/profile.jpg'),
                             fit: BoxFit.fill),
                       ),
                     ),
