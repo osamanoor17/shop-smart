@@ -6,6 +6,7 @@ import 'package:shopsmart_user/widgets/title_text.dart';
 
 import '../../consts/app_consts.dart';
 import '../inner_screens/product_details.dart';
+import 'heart_button.dart';
 
 class ProductsWidget extends StatefulWidget {
   const ProductsWidget({super.key});
@@ -49,10 +50,11 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                         fontSize: 18,
                       )),
                   Flexible(
-                      flex: 2,
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(IconlyLight.heart))),
+                    flex: 2,
+                    child: HeartButton(
+                      bkgColor: Colors.blue.shade200,
+                    ),
+                  ),
                 ],
               ),
             ),

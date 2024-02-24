@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopsmart_user/screens/inner_screens/viewed_recently.dart';
+import 'package:shopsmart_user/screens/inner_screens/wishlist_screen.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 import '../../consts/cus_ListTile.dart';
 import '../../providers/theme_provider.dart';
 import '../../services/assets_manager.dart';
+import '../../services/myapp_functions.dart';
 import '../../widgets/app_name_text.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -40,7 +43,8 @@ class ProfileScreen extends StatelessWidget {
             Visibility(
               visible: true,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Row(
                   children: [
                     Container(
@@ -51,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
                         border: Border.all(
                             color: Theme.of(context).colorScheme.background,
                             width: 3),
-                        image:  const DecorationImage(
+                        image: const DecorationImage(
                             image: NetworkImage(
                                 'https://i.ibb.co/NnJvgYq/profile.jpg'),
                             fit: BoxFit.fill),
@@ -97,11 +101,16 @@ class ProfileScreen extends StatelessWidget {
                   CustomListTile(
                       text: 'Wishlist',
                       imagePath: AssetsManager.wishlistSvg,
-                      function: () {}),
+                      function: () {
+                        Navigator.pushNamed(context, WishListScreen.routeName);
+                      }),
                   CustomListTile(
                       text: 'Viewed Recently',
                       imagePath: AssetsManager.recent,
-                      function: () {}),
+                      function: () {
+                        Navigator.pushNamed(
+                            context, ViewedRecentlyScreen.routeName);
+                      }),
                   CustomListTile(
                       text: 'Address',
                       imagePath: AssetsManager.address,
@@ -155,7 +164,7 @@ class ProfileScreen extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
                   Center(
                     child: ElevatedButton.icon(
@@ -165,9 +174,15 @@ class ProfileScreen extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           )),
-                      onPressed: () {},
                       icon: const Icon(Icons.login),
                       label: const Text("Login"),
+                      onPressed: () async {
+                        await MyAppFunctions.showErrorOrWarningDialog(
+                            context: context,
+                            subTitle: "Are you sure to sign-out?",
+                            fct: () {},
+                            isError: false);
+                      },
                     ),
                   ),
                 ],

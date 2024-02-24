@@ -5,6 +5,7 @@ import 'package:shopsmart_user/consts/app_consts.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
+import '../products/heart_button.dart';
 import 'quantity_btm_sheet.dart';
 
 class CartWidget extends StatelessWidget {
@@ -51,9 +52,9 @@ class CartWidget extends StatelessWidget {
                                   Icons.clear,
                                   color: Colors.red,
                                 )),
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(IconlyLight.heart)),
+                            HeartButton(
+                              bkgColor: Colors.blue.shade200,
+                            )
                           ],
                         ),
                       ],

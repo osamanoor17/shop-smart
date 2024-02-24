@@ -5,6 +5,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../consts/app_consts.dart';
 import '../../widgets/subtitle_text.dart';
 import '../inner_screens/product_details.dart';
+import 'heart_button.dart';
 
 class LatestArrivalProducts extends StatelessWidget {
   const LatestArrivalProducts({super.key});
@@ -28,7 +29,7 @@ class LatestArrivalProducts extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   child: FancyShimmerImage(
                     imageUrl: AppConsts.imageUrl,
-                    height: size.height * 0.32,
+                    height: size.height * 0.42,
                     width: size.width * 0.24,
                   ),
                 ),
@@ -39,23 +40,19 @@ class LatestArrivalProducts extends StatelessWidget {
               Flexible(
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 15,
-                    ),
                     const Text(
                       "White Sneakers Shoes",
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 7,
                     ),
                     FittedBox(
                       child: Row(
                         children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(IconlyLight.heart),
+                          HeartButton(
+                            bkgColor: Colors.blue.shade200,
                           ),
                           IconButton(
                             onPressed: () {},
@@ -69,7 +66,7 @@ class LatestArrivalProducts extends StatelessWidget {
                     ),
                     const FittedBox(
                       child: SubtitleTextWidget(
-                        label: "\$1600.00",
+                        label: "\$16000.00",
                         color: Colors.blue,
                         fontWeight: FontWeight.w600,
                       ),
