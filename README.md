@@ -1,2 +1,2 @@
-# shops-mart
- Shops Mart Application
+# shop - Smart
+ Shop smart Application
