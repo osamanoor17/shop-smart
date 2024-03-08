@@ -7,6 +7,7 @@ import 'profile/profile_screen.dart';
 import 'search/search_screen.dart';
 
 class RootScreen extends StatefulWidget {
+    static const routeName= '/RootScreen';
   const RootScreen({Key? key}) : super(key: key);
 
   @override

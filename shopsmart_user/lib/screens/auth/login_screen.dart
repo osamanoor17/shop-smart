@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:shopsmart_user/consts/validator.dart';
 import 'package:shopsmart_user/screens/auth/register_screen.dart';
+import 'package:shopsmart_user/screens/root_screen.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
 import '../../widgets/app_name_text.dart';
 import '../../widgets/google_button.dart';
+import 'forgot_password.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const routeName= '/LoginScreen';
   const LoginScreen({super.key});
 
   @override
@@ -148,7 +151,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           Align(
                             alignment: Alignment.centerRight,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                        context, ForgotPasswordScreen.routeName);
+                                },
                                 child: const SubtitleTextWidget(
                                   label: "Forgot Password?",
                                   fontStyle: FontStyle.italic,
@@ -199,9 +205,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                     )),
                                 child: const Text(
                                   "Signup as Guest",
-                                  style: TextStyle(fontSize: 17),
+                                  style: TextStyle(fontSize: 12),
                                 ),
-                                onPressed: () async {},
+                                onPressed: () async {
+                                  Navigator.pushNamed(
+                                        context, RootScreen.routeName);
+                                },
                               ),
                             ],
                           ),

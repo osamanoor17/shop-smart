@@ -4,8 +4,7 @@ import 'package:shopsmart_user/services/assets_manager.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
 import '../../widgets/empty_bag.dart';
-import '../cart/bottom_checkout.dart';
-import '../cart/cart_widget.dart';
+
 import '../products/products_widget.dart';
 
 class ViewedRecentlyScreen extends StatelessWidget {

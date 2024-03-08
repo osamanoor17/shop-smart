@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shopsmart_user/consts/validator.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
+import '../../services/myapp_functions.dart';
 import '../../widgets/app_name_text.dart';
+import '../../widgets/image_picker_widget.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const routeName = "/RegisterScreen";
@@ -27,6 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late final FocusNode _passwordFocusNode;
   late final FocusNode _repeatpasswordFocusNode;
   final _formkey = GlobalKey<FormState>();
+  XFile? _pickedImage;
   @override
   void initState() {
     _nameController = TextEditingController();
@@ -59,10 +63,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Future<void> _registerFct() async {
     final isValid = _formkey.currentState!.validate();
+    FocusScope.of(context).unfocus();
+  }
+
+  Future<void> localImagePicker() async {
+    final ImagePicker imagePicker = ImagePicker();
+    await MyAppFunctions.imagePickerDialog(
+        context: context,
+        cameraFCT: () async {
+          _pickedImage =
+              await imagePicker.pickImage(source: ImageSource.camera);
+          setState(() {});
+        },
+        galleryFCT: () async {
+          _pickedImage =
+              await imagePicker.pickImage(source: ImageSource.gallery);
+          setState(() {});
+        },
+        removeFCT: () {
+          setState(() {
+            _pickedImage = null;
+          });
+        });
   }
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -73,14 +100,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: SingleChildScrollView(
             child: Column(children: <Widget>[
               const SizedBox(
-                height: 60,
+                height: 50,
               ),
               const AppNameTextWidget(
                 fontSize: 40,
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              // const SizedBox(
+              //   height: 30,
+              // ),
               const Column(
                 children: [
                   Padding(
@@ -91,7 +118,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   Padding(
                       padding:
-                          EdgeInsets.symmetric(vertical: 15.0, horizontal: 10),
+                          EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: SubtitleTextWidget(
@@ -100,8 +127,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ))
                 ],
               ),
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                  height: size.width * 0.4,
+                  width: size.width * 0.4,
+                  child: PickImageWidget(
+                    pickedImage: _pickedImage,
+                    function: () async {
+                      await localImagePicker();
+                    },
+                  )),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30.0),
+                padding: const EdgeInsets.symmetric(vertical: 25.0),
                 child: Form(
                     key: _formkey,
                     child: Padding(
@@ -126,7 +165,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             },
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 15,
                           ),
                           TextFormField(
                             controller: _emailController,

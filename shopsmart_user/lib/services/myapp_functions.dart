@@ -1,25 +1,23 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../widgets/subtitle_text.dart';
+import '../widgets/title_text.dart';
 import 'assets_manager.dart';
 
 class MyAppFunctions {
   static Future<void> showErrorOrWarningDialog(
       {required BuildContext context,
       required String subTitle,
-       required Function fct,
+      required Function fct,
       bool isError = true}) async {
     await showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16)
-            ),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               content: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -32,7 +30,7 @@ class MyAppFunctions {
                   const SizedBox(
                     height: 16,
                   ),
-                   SubtitleTextWidget(
+                  SubtitleTextWidget(
                     label: subTitle,
                     fontWeight: FontWeight.w600,
                   ),
@@ -50,7 +48,6 @@ class MyAppFunctions {
                             },
                             child: const SubtitleTextWidget(
                               label: "Cancel",
-
                               color: Colors.green,
                             )),
                       ),
@@ -61,12 +58,70 @@ class MyAppFunctions {
                           child: const SubtitleTextWidget(
                             label: 'OK',
                             color: Colors.red,
-                          
                           ))
                     ],
                   ),
                 ],
               ));
+        });
+  }
+
+  static Future<void> imagePickerDialog({
+    required BuildContext context,
+    required Function cameraFCT,
+    required Function galleryFCT,
+    required Function removeFCT,
+  }) async {
+    await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Center(
+              child: TitlesTextWidget(
+                label: "Choose option",
+              ),
+            ),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: [
+                  TextButton.icon(
+                    onPressed: () {
+                      cameraFCT();
+                      if (Navigator.canPop(context)) {
+                        Navigator.pop(context);
+                      }
+                    },
+                    icon: const Icon(Icons.camera),
+                    label: const Text("Camera"),
+                  ),
+                  TextButton.icon(
+                    onPressed: () {
+                      galleryFCT();
+                      if (Navigator.canPop(context)) {
+                        Navigator.pop(context);
+                      }
+                    },
+                    icon: const Icon(
+                      Icons.browse_gallery,
+                    ),
+                    label: const Text("Gallery"),
+                  ),
+                  TextButton.icon(
+                    onPressed: () {
+                      removeFCT();
+                      if (Navigator.canPop(context)) {
+                        Navigator.pop(context);
+                      }
+                    },
+                    icon: const Icon(
+                      Icons.remove_circle_outline,
+                    ),
+                    label: const Text("Remove"),
+                  ),
+                ],
+              ),
+            ),
+          );
         });
   }
 }
