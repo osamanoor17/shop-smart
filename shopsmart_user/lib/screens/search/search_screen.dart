@@ -1,5 +1,6 @@
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
+import 'package:shopsmart_user/models/products_model.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
 import '../../services/assets_manager.dart';
@@ -80,11 +81,15 @@ class _SearchScreenState extends State<SearchScreen> {
                 mainAxisSpacing: 15,
                 crossAxisSpacing: 15,
                 builder: (context, index) {
-                  return const Center(
-                    child: ProductsWidget(),
+                  return  Center(
+                    child: ProductsWidget(
+                      image: ProductModel.products[index].productImage,
+                      title:ProductModel.products[index].productTitle ,
+                      price:ProductModel.products[index].productPrice ,
+                    ),
                   );
                 },
-                itemCount: 200,
+                itemCount: ProductModel.products.length,
                 crossAxisCount: 2,
               ),
             ),

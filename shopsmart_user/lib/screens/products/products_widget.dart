@@ -9,7 +9,12 @@ import '../inner_screens/product_details.dart';
 import 'heart_button.dart';
 
 class ProductsWidget extends StatefulWidget {
-  const ProductsWidget({super.key});
+  final String? image, title, price;
+  const ProductsWidget(
+      {super.key,
+       this.image,
+       this.title,
+       this.price});
 
   @override
   State<ProductsWidget> createState() => _ProductsWidgetState();
@@ -30,7 +35,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: FancyShimmerImage(
-                imageUrl: AppConsts.imageUrl,
+                imageUrl:widget.image?? AppConsts.imageUrl,
                 height: size.height * 0.24,
                 width: double.infinity,
               ),
@@ -42,10 +47,10 @@ class _ProductsWidgetState extends State<ProductsWidget> {
               padding: const EdgeInsets.all(2.0),
               child: Row(
                 children: [
-                  const Flexible(
+                   Flexible(
                       flex: 9,
                       child: TitlesTextWidget(
-                        label: "White Sneakers Shoes",
+                        label: widget.title??"White Sneakers Shoes",
                         maxLines: 2,
                         fontSize: 18,
                       )),
@@ -64,10 +69,10 @@ class _ProductsWidgetState extends State<ProductsWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Flexible(
+                 Flexible(
                     flex: 1,
                     child: SubtitleTextWidget(
-                      label: "\$1600.00",
+                      label: "\S ${widget.price}",
                       color: Colors.blue,
                       fontWeight: FontWeight.w600,
                     )),
