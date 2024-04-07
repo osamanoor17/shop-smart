@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopsmart_user/providers/products_provider.dart';
 import 'package:shopsmart_user/providers/theme_provider.dart';
 import 'package:shopsmart_user/screens/auth/register_screen.dart';
 import 'package:shopsmart_user/screens/inner_screens/product_details.dart';
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) {
           return ThemeProvider();
+        }),
+        ChangeNotifierProvider(create: (_) {
+          return ProductsProvider();
         })
       ],
       child: Consumer<ThemeProvider>(builder: (context, themeProvider, child) {

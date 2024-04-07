@@ -46,7 +46,7 @@ class ViewedRecentlyScreen extends StatelessWidget {
               mainAxisSpacing: 15,
               crossAxisSpacing: 15,
               builder: (context, index) {
-                return const Center(
+                return  Center(
                   child: ProductsWidget(),
                 );
               },
