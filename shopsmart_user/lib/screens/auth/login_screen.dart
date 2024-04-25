@@ -11,7 +11,7 @@ import '../../widgets/google_button.dart';
 import 'forgot_password.dart';
 
 class LoginScreen extends StatefulWidget {
-  static const routeName= '/LoginScreen';
+  static const routeName = '/LoginScreen';
   const LoginScreen({super.key});
 
   @override
@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               prefixIcon: Icon(IconlyLight.message),
                             ),
                             onFieldSubmitted: (value) {
-                              Focus.of(context)
+                              FocusScope.of(context)
                                   .requestFocus(_passwordFocusNode);
                             },
                             validator: (value) {
@@ -153,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: TextButton(
                                 onPressed: () {
                                   Navigator.pushNamed(
-                                        context, ForgotPasswordScreen.routeName);
+                                      context, ForgotPasswordScreen.routeName);
                                 },
                                 child: const SubtitleTextWidget(
                                   label: "Forgot Password?",
@@ -195,7 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               const GoogleButton(),
-                              ElevatedButton(
+                              ElevatedButton.icon(
                                 style: ElevatedButton.styleFrom(
                                     padding: const EdgeInsets.all(12),
                                     backgroundColor: Theme.of(context)
@@ -203,14 +203,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(12),
                                     )),
-                                child: const Text(
+                                label: const Text(
                                   "Signup as Guest",
                                   style: TextStyle(fontSize: 12),
                                 ),
                                 onPressed: () async {
                                   Navigator.pushNamed(
-                                        context, RootScreen.routeName);
+                                      context, RootScreen.routeName);
                                 },
+                                icon: const Icon(Icons.person),
                               ),
                             ],
                           ),

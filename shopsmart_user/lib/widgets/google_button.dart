@@ -9,19 +9,20 @@ class GoogleButton extends StatelessWidget {
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(12),
-          backgroundColor:
-          Theme.of(context).scaffoldBackgroundColor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           )),
-      icon: const Icon(Ionicons.logo_google,color: Colors.red,),
+      icon: const Icon(
+        Ionicons.logo_google,
+        color: Colors.red,
+        size: 20,
+      ),
       label: const Text(
         "Signup with Google",
         style: TextStyle(fontSize: 12),
       ),
-      onPressed: () async {
-
-      },
+      onPressed: () async {},
     );
   }
 }
