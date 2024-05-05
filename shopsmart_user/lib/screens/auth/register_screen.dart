@@ -158,7 +158,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               prefixIcon: Icon(Icons.person),
                             ),
                             onFieldSubmitted: (value) {
-                              Focus.of(context).requestFocus(_emailFocusNode);
+                              FocusScope.of(context).requestFocus(
+                                  _emailFocusNode); // Updated here
                             },
                             validator: (value) {
                               return MyValidators.displayNamevalidator(value);
@@ -177,7 +178,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               prefixIcon: Icon(IconlyLight.message),
                             ),
                             onFieldSubmitted: (value) {
-                              Focus.of(context)
+                              FocusScope.of(context)
                                   .requestFocus(_passwordFocusNode);
                             },
                             validator: (value) {
@@ -206,8 +207,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       ? Icons.visibility
                                       : Icons.visibility_off)),
                             ),
-                            onFieldSubmitted: (value) {
-                              Focus.of(context)
+                            onFieldSubmitted: (value) async {
+                              FocusScope.of(context)
                                   .requestFocus(_repeatpasswordFocusNode);
                             },
                             validator: (value) {
