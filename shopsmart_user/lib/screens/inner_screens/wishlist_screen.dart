@@ -48,7 +48,7 @@ class WishListScreen extends StatelessWidget {
         crossAxisSpacing: 15,
         builder: (context, index) {
           return  Center(
-            child: ProductsWidget(),
+            child: ProductsWidget(productId: '',),
           );
         },
         itemCount: 200,

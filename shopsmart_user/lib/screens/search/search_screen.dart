@@ -9,6 +9,7 @@ import '../../services/assets_manager.dart';
 import '../products/products_widget.dart';
 
 class SearchScreen extends StatefulWidget {
+  static const routeName = '/SearchScreen';
   const SearchScreen({super.key});
 
   @override
@@ -33,6 +34,11 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final productsProvider = Provider.of<ProductsProvider>(context);
+    String? passedCategory =
+        ModalRoute.of(context)!.settings.arguments as String?;
+    List<ProductModel> productList = passedCategory == null
+        ? productsProvider.products
+        : productsProvider.findByCategory(categoryName: passedCategory);
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -40,62 +46,60 @@ class _SearchScreenState extends State<SearchScreen> {
       child: Scaffold(
         appBar: AppBar(
           // ignore: prefer_const_constructors
-          title: TitlesTextWidget(label: "Search Products"),
+          title: TitlesTextWidget(label:passedCategory?? "Search Products"),
           centerTitle: false,
           leading: Padding(
             padding: const EdgeInsets.all(6.0),
             child: Image.asset(AssetsManager.shoppingCart),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(children: [
-            const SizedBox(
-              height: 15,
-            ),
-            TextField(
-              controller: searchTextController,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search),
-                suffixIcon: GestureDetector(
-                    onTap: () {
-                      // setState(() {
-                      FocusScope.of(context).unfocus();
-                      searchTextController.clear();
+        body: productList.isEmpty
+            ? const Center(child: TitlesTextWidget(label: "No Products Found"))
+            : Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(children: [
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextField(
+                    controller: searchTextController,
+                    decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.search),
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              // setState(() {
+                              FocusScope.of(context).unfocus();
+                              searchTextController.clear();
+                            },
+                            child: const Icon(
+                              Icons.clear,
+                              color: Colors.red,
+                            ))),
+                    onChanged: (value) {
+                      // print("value of the text is $value");
                     },
-                    child: const Icon(
-                      Icons.clear,
-                      color: Colors.red,
-                    )),
+                    onSubmitted: (value) {
+                      // print("value of the text is $value");
+                      // print("value of the controller text is ${searchTextController.text}");
+                    },
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Expanded(
+                    child: DynamicHeightGridView(
+                      mainAxisSpacing: 15,
+                      crossAxisSpacing: 15,
+                      builder: (context, index) {
+                        return ProductsWidget(
+                            productId: productList[index].productId);
+                      },
+                      itemCount: productList.length,
+                      crossAxisCount: 2,
+                    ),
+                  ),
+                ]),
               ),
-              onChanged: (value) {
-                // print("value of the text is $value");
-              },
-              onSubmitted: (value) {
-                // print("value of the text is $value");
-                // print("value of the controller text is ${searchTextController.text}");
-              },
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Expanded(
-              child: DynamicHeightGridView(
-                mainAxisSpacing: 15,
-                crossAxisSpacing: 15,
-                builder: (context, index) {
-                  return Center(
-                    child: ChangeNotifierProvider.value(
-                        value: productsProvider.getProducts[index],
-                        child: ProductsWidget()),
-                  );
-                },
-                itemCount: productsProvider.getProducts.length,
-                crossAxisCount: 2,
-              ),
-            ),
-          ]),
-        ),
       ),
     );
   }
