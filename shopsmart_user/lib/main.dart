@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopsmart_user/providers/cart-provider.dart';
 import 'package:shopsmart_user/providers/products_provider.dart';
 import 'package:shopsmart_user/providers/theme_provider.dart';
 import 'package:shopsmart_user/screens/auth/register_screen.dart';
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
         }),
         ChangeNotifierProvider(create: (_) {
           return ProductsProvider();
+        }),
+        ChangeNotifierProvider(create: (_) {
+          return CartProvider();
         })
       ],
       child: Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
@@ -53,7 +57,6 @@ class MyApp extends StatelessWidget {
             LoginScreen.routeName: (context) => const LoginScreen(),
             OrdersScreenFree.routeName: (context) => const OrdersScreenFree(),
             SearchScreen.routeName: (context) => const SearchScreen(),
-
           },
         );
       }),

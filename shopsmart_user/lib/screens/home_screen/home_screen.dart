@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
