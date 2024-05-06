@@ -31,6 +31,7 @@ class _SearchScreenState extends State<SearchScreen> {
     super.dispose();
   }
 
+  List<ProductModel> productListSearch = [];
   @override
   Widget build(BuildContext context) {
     final productsProvider = Provider.of<ProductsProvider>(context);
@@ -46,7 +47,7 @@ class _SearchScreenState extends State<SearchScreen> {
       child: Scaffold(
         appBar: AppBar(
           // ignore: prefer_const_constructors
-          title: TitlesTextWidget(label:passedCategory?? "Search Products"),
+          title: TitlesTextWidget(label: passedCategory ?? "Search Products"),
           centerTitle: false,
           leading: Padding(
             padding: const EdgeInsets.all(6.0),
@@ -64,6 +65,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   TextField(
                     controller: searchTextController,
                     decoration: InputDecoration(
+                        hintText: "Search",
                         prefixIcon: const Icon(Icons.search),
                         suffixIcon: GestureDetector(
                             onTap: () {
@@ -75,28 +77,45 @@ class _SearchScreenState extends State<SearchScreen> {
                               Icons.clear,
                               color: Colors.red,
                             ))),
-                    onChanged: (value) {
-                      // print("value of the text is $value");
-                    },
+                    // onChanged: (value) {
+                    //   setState(() {
+                    //     productListSearch = productsProvider.searchQuery(
+                    //         searchText: searchTextController.text);
+                    //   });
+                    // },
                     onSubmitted: (value) {
-                      // print("value of the text is $value");
-                      // print("value of the controller text is ${searchTextController.text}");
+                      setState(() {
+                        productListSearch = productsProvider.searchQuery(
+                            searchText: searchTextController.text,
+                            passedList: productList);
+                      });
                     },
                   ),
                   const SizedBox(
                     height: 15,
                   ),
+                  if (searchTextController.text.isNotEmpty &&
+                      productListSearch.isEmpty) ...[
+                    const Center(
+                      child: TitlesTextWidget(
+                        label: "No Products Found!",
+                      ),
+                    )
+                  ],
                   Expanded(
                     child: DynamicHeightGridView(
-                      mainAxisSpacing: 15,
-                      crossAxisSpacing: 15,
-                      builder: (context, index) {
-                        return ProductsWidget(
-                            productId: productList[index].productId);
-                      },
-                      itemCount: productList.length,
-                      crossAxisCount: 2,
-                    ),
+                        mainAxisSpacing: 15,
+                        crossAxisSpacing: 15,
+                        builder: (context, index) {
+                          return ProductsWidget(
+                              productId: searchTextController.text.isNotEmpty
+                                  ? productListSearch[index].productId
+                                  : productList[index].productId);
+                        },
+                        itemCount: searchTextController.text.isNotEmpty
+                            ? productListSearch.length
+                            : productList.length,
+                        crossAxisCount: 2),
                   ),
                 ]),
               ),
