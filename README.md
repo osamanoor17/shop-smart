@@ -1,2 +1,2 @@
 # shop - Smart
- Shop smart Application
+ Shop smart Application.
