@@ -37,7 +37,7 @@ class CartBottomSheetWidget extends StatelessWidget {
                     FittedBox(
                       child: SubtitleTextWidget(
                         label:
-                            "\$${cartProvider.getTotal(productsProvider: productsProvider)}",
+                            "\$ ${cartProvider.getTotal(productsProvider: productsProvider).toStringAsFixed(2)}",
                         color: Colors.blue,
                       ),
                     ),

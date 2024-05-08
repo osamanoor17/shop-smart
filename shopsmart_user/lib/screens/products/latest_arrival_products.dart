@@ -1,7 +1,9 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shopsmart_user/models/products_model.dart';
+import 'package:shopsmart_user/providers/cart-provider.dart';
 
-import '../../consts/app_consts.dart';
 import '../../widgets/subtitle_text.dart';
 import '../inner_screens/product_details.dart';
 import 'heart_button.dart';
@@ -11,12 +13,15 @@ class LatestArrivalProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
+    final productsModel = Provider.of<ProductModel>(context);
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onTap: () async {
-          await Navigator.pushNamed(context, ProductDetailsScreen.routeName);
+          await Navigator.pushNamed(context, ProductDetailsScreen.routeName,
+              arguments: productsModel.productId);
         },
         child: SizedBox(
           width: size.width * 0.45,
@@ -27,7 +32,7 @@ class LatestArrivalProducts extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: FancyShimmerImage(
-                    imageUrl: AppConsts.imageUrl,
+                    imageUrl: productsModel.productImage,
                     height: size.height * 0.42,
                     width: size.width * 0.24,
                   ),
@@ -39,8 +44,8 @@ class LatestArrivalProducts extends StatelessWidget {
               Flexible(
                 child: Column(
                   children: [
-                    const Text(
-                      "White Sneakers Shoes",
+                    Text(
+                      productsModel.productTitle,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -50,12 +55,26 @@ class LatestArrivalProducts extends StatelessWidget {
                     FittedBox(
                       child: Row(
                         children: [
-                          HeartButton(
-                            bkgColor: Colors.blue.shade200,
-                          ),
+                          const HeartButton(
+                              // bkgColor: Colors.blue.shade200,
+                              ),
                           IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.shopping_cart),
+                            onPressed: () {
+                              if (cartProvider.isProdinCart(
+                                  productId: productsModel.productId)) {
+                                return;
+                              }
+                              cartProvider.addProductToCart(
+                                  productId: productsModel.productId);
+                            },
+                            icon: Icon(
+                              cartProvider.isProdinCart(
+                                      productId: productsModel.productId)
+                                  ? Icons.check
+                                  : Icons.add_shopping_cart_outlined,
+                              size: 22,
+                              color: Colors.blue,
+                            ),
                           ),
                         ],
                       ),
@@ -63,9 +82,9 @@ class LatestArrivalProducts extends StatelessWidget {
                     const SizedBox(
                       height: 5,
                     ),
-                    const FittedBox(
+                    FittedBox(
                       child: SubtitleTextWidget(
-                        label: "\$16000.00",
+                        label: "\$${productsModel.productPrice}",
                         color: Colors.blue,
                         fontWeight: FontWeight.w600,
                       ),

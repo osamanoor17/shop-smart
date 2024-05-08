@@ -7,6 +7,7 @@ import 'package:shopsmart_user/providers/products_provider.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
+import '../../providers/cart-provider.dart';
 import '../products/heart_button.dart';
 import 'quantity_btm_sheet.dart';
 
@@ -17,6 +18,7 @@ class CartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartModel = Provider.of<CartModel>(context);
     final productsProvider = Provider.of<ProductsProvider>(context);
+    final cartProvider = Provider.of<CartProvider>(context);
     final getCurrentProduct =
         productsProvider.findByProdId(cartModel.productId);
     Size size = MediaQuery.of(context).size;
@@ -55,7 +57,11 @@ class CartWidget extends StatelessWidget {
                               Column(
                                 children: [
                                   IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        cartProvider.removeOneItem(
+                                            productId:
+                                                getCurrentProduct.productId);
+                                      },
                                       icon: const Icon(
                                         Icons.clear,
                                         color: Colors.red,
@@ -88,11 +94,13 @@ class CartWidget extends StatelessWidget {
                                               topRight: Radius.circular(30))),
                                       context: context,
                                       builder: (context) {
-                                        return const QuantityBottomSheetWidget();
+                                        return QuantityBottomSheetWidget(
+                                          cartModel: cartModel,
+                                        );
                                       });
                                 },
                                 icon: const Icon(IconlyLight.arrowDown2),
-                                label:  Text("Qty : ${cartModel.quantity}"),
+                                label: Text("Qty : ${cartModel.quantity}"),
                                 style: OutlinedButton.styleFrom(
                                   side: const BorderSide(width: 1),
                                   shape: RoundedRectangleBorder(

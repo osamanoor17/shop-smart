@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopsmart_user/providers/cart-provider.dart';
 import 'package:shopsmart_user/services/assets_manager.dart';
+import 'package:shopsmart_user/services/myapp_functions.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
+
 import '../../widgets/empty_bag.dart';
 import 'bottom_checkout.dart';
 import 'cart_widget.dart';
@@ -14,7 +16,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     //  final productsProvider = Provider.of<ProductsProvider>(context);
     final cartProvider = Provider.of<CartProvider>(context);
-     
+
     return cartProvider.getCartitems.isEmpty
         ? Scaffold(
             body: EmptyBag(
@@ -36,7 +38,15 @@ class CartScreen extends StatelessWidget {
                     Icons.delete_forever_rounded,
                     color: Colors.red,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    MyAppFunctions.showErrorOrWarningDialog(
+                        isError: false,
+                        context: context,
+                        subTitle: "Clear Cart ?",
+                        fct: () {
+                          cartProvider.clearLocalcart();
+                        });
+                  },
                 )
               ],
               centerTitle: false,
@@ -51,8 +61,10 @@ class CartScreen extends StatelessWidget {
                   child: ListView.builder(
                       itemCount: cartProvider.getCartitems.length,
                       itemBuilder: (context, index) {
-                        return ChangeNotifierProvider.value(value: cartProvider.getCartitems.values.toList()[index],
-                        child: const CartWidget());
+                        return ChangeNotifierProvider.value(
+                            value: cartProvider.getCartitems.values
+                                .toList()[index],
+                            child: const CartWidget());
                       }),
                 ),
                 const SizedBox(
