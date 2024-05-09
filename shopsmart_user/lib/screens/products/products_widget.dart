@@ -61,7 +61,7 @@ class _ProductsWidgetState extends State<ProductsWidget> {
                             )),
                         Flexible(
                           flex: 2,
-                          child: HeartButton(
+                          child:  HeartButton(productId: getCurrentProduct.productId,
                               // bkgColor: Colors.blue.shade200,
                               ),
                         ),

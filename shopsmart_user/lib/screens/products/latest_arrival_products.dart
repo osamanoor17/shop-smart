@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopsmart_user/models/products_model.dart';
 import 'package:shopsmart_user/providers/cart-provider.dart';
+import 'package:shopsmart_user/providers/wishlist_provider.dart';
 
 import '../../widgets/subtitle_text.dart';
 import '../inner_screens/product_details.dart';
@@ -15,6 +16,8 @@ class LatestArrivalProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
     final productsModel = Provider.of<ProductModel>(context);
+        final wishlistsProvider = Provider.of<WishlistProvider>(context);
+
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -55,7 +58,7 @@ class LatestArrivalProducts extends StatelessWidget {
                     FittedBox(
                       child: Row(
                         children: [
-                          const HeartButton(
+                           HeartButton(productId: productsModel.productId,
                               // bkgColor: Colors.blue.shade200,
                               ),
                           IconButton(
