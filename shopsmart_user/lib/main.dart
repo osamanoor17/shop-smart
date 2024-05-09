@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shopsmart_user/providers/cart-provider.dart';
 import 'package:shopsmart_user/providers/products_provider.dart';
 import 'package:shopsmart_user/providers/theme_provider.dart';
+import 'package:shopsmart_user/providers/viewed_recently_provider.dart';
 import 'package:shopsmart_user/providers/wishlist_provider.dart';
 import 'package:shopsmart_user/screens/auth/register_screen.dart';
 import 'package:shopsmart_user/screens/inner_screens/product_details.dart';
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget {
         }),
         ChangeNotifierProvider(create: (_){
           return WishlistProvider();
+        }),
+        ChangeNotifierProvider(create: (_){
+          return ViewedProdProvider();
         })
       ],
       child: Consumer<ThemeProvider>(builder: (context, themeProvider, child) {

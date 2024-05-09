@@ -1,9 +1,11 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopsmart_user/models/products_model.dart';
 import 'package:shopsmart_user/providers/cart-provider.dart';
-import 'package:shopsmart_user/providers/wishlist_provider.dart';
+import 'package:shopsmart_user/providers/viewed_recently_provider.dart';
 
 import '../../widgets/subtitle_text.dart';
 import '../inner_screens/product_details.dart';
@@ -16,13 +18,14 @@ class LatestArrivalProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
     final productsModel = Provider.of<ProductModel>(context);
-        final wishlistsProvider = Provider.of<WishlistProvider>(context);
+    final viewedProdProvider = Provider.of<ViewedProdProvider>(context);
 
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onTap: () async {
+          viewedProdProvider.addViewedProd(productId: productsModel.productId);
           await Navigator.pushNamed(context, ProductDetailsScreen.routeName,
               arguments: productsModel.productId);
         },

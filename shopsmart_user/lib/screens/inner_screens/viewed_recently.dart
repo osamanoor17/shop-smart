@@ -1,6 +1,9 @@
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shopsmart_user/providers/viewed_recently_provider.dart';
 import 'package:shopsmart_user/services/assets_manager.dart';
+import 'package:shopsmart_user/services/myapp_functions.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
 import '../../widgets/empty_bag.dart';
@@ -13,7 +16,8 @@ class ViewedRecentlyScreen extends StatelessWidget {
   final bool isEmpty = false;
   @override
   Widget build(BuildContext context) {
-    return isEmpty
+    final viewedProdProvider = Provider.of<ViewedProdProvider>(context);
+    return viewedProdProvider.getViewedProds.isEmpty
         ? Scaffold(
             body: EmptyBag(
             imagePath: AssetsManager.orderBag,
@@ -25,7 +29,7 @@ class ViewedRecentlyScreen extends StatelessWidget {
         : Scaffold(
             appBar: AppBar(
               // ignore: prefer_const_constructors
-              title: TitlesTextWidget(label: "Viewed Recently (6)"),
+              title: TitlesTextWidget(label: "Viewed Recently (${viewedProdProvider.getViewedProds.length})"),
 
               actions: [
                 IconButton(
@@ -33,7 +37,15 @@ class ViewedRecentlyScreen extends StatelessWidget {
                     Icons.delete_forever_rounded,
                     color: Colors.red,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                     MyAppFunctions.showErrorOrWarningDialog(
+                        isError: false,
+                        context: context,
+                        subTitle: "Clear Viewed Products ?",
+                        fct: () {
+                          viewedProdProvider.clearLocalViewedProd();
+                        });
+                  },
                 )
               ],
               centerTitle: false,
@@ -47,10 +59,13 @@ class ViewedRecentlyScreen extends StatelessWidget {
               crossAxisSpacing: 15,
               builder: (context, index) {
                 return  Center(
-                  child: ProductsWidget(productId: '',),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ProductsWidget(productId: viewedProdProvider.getViewedProds.values.toList()[index].productId,),
+                  ),
                 );
               },
-              itemCount: 200,
+              itemCount: viewedProdProvider.getViewedProds.length,
               crossAxisCount: 2,
             ),
           );

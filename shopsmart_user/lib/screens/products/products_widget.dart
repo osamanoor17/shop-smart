@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopsmart_user/providers/cart-provider.dart';
 import 'package:shopsmart_user/providers/products_provider.dart';
+import 'package:shopsmart_user/providers/viewed_recently_provider.dart';
 import 'package:shopsmart_user/widgets/subtitle_text.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
@@ -25,12 +26,14 @@ class _ProductsWidgetState extends State<ProductsWidget> {
     final getCurrentProduct = productsProvider.findByProdId(widget.productId);
     final cartProvider = Provider.of<CartProvider>(context);
     Size size = MediaQuery.of(context).size;
+    final viewedProdProvider = Provider.of<ViewedProdProvider>(context);
     return getCurrentProduct == null
         ? const SizedBox.shrink()
         : Padding(
             padding: const EdgeInsets.all(0.0),
             child: GestureDetector(
               onTap: () async {
+                 viewedProdProvider.addViewedProd(productId: getCurrentProduct.productId);
                 await Navigator.pushNamed(
                     context, ProductDetailsScreen.routeName,
                     arguments: getCurrentProduct.productId);
