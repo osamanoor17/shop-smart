@@ -9,9 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
+  cupertino_icons: ^1.0.2
   # Memory
-  shared_preferences: ^2.2.3
+  shared_preferences: ^2.1.0
   # State management
   provider: ^6.0.5
   # Icons

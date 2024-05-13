@@ -1,6 +1,7 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopsmart_admin_en/screens/inner_screen/orders/edit_upload_product_form.dart';
 
 import '../providers/products_provider.dart';
 import 'subtitle_text.dart';
@@ -29,7 +30,13 @@ class _ProductWidgetState extends State<ProductWidget> {
         : Padding(
             padding: const EdgeInsets.all(0.0),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return EditorUploadProductScreen(
+                    productModel: getCurrProduct,
+                  );
+                }));
+              },
               child: Column(
                 children: [
                   ClipRRect(
