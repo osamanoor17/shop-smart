@@ -5,7 +5,6 @@ import 'package:shopsmart_user/models/products_model.dart';
 import 'package:shopsmart_user/providers/products_provider.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
 
-import '../../services/assets_manager.dart';
 import '../products/products_widget.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -46,13 +45,20 @@ class _SearchScreenState extends State<SearchScreen> {
       },
       child: Scaffold(
         appBar: AppBar(
+          // automaticallyImplyLeading: true,
           // ignore: prefer_const_constructors
           title: TitlesTextWidget(label: passedCategory ?? "Search Products"),
           centerTitle: false,
           leading: Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: Image.asset(AssetsManager.shoppingCart),
-          ),
+              padding: const EdgeInsets.all(6.0),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios_new_outlined,
+                ),
+              )),
         ),
         body: productList.isEmpty
             ? const Center(child: TitlesTextWidget(label: "No Products Found"))

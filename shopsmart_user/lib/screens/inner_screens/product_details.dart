@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopsmart_user/providers/cart-provider.dart';
 import 'package:shopsmart_user/widgets/title_text.dart';
+
 import '../../providers/products_provider.dart';
 import '../../widgets/app_name_text.dart';
 import '../../widgets/subtitle_text.dart';
@@ -92,8 +93,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                             HeartButton(productId: getCurrentProduct.productId,
-                              bkgColor: Colors.blue.shade200,
+                              HeartButton(
+                                productId: getCurrentProduct.productId,
+                                bkgColor: Colors.blue.shade200,
                               ),
                               const SizedBox(
                                 width: 20,
@@ -109,25 +111,30 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                               BorderRadius.circular(30),
                                         )),
                                     onPressed: () {
-                                       if (cartProvider.isProdinCart(
-                                productId: getCurrentProduct.productId)) {
-                              return;
-                            }
-                            cartProvider.addProductToCart(
-                                productId: getCurrentProduct.productId);
+                                      if (cartProvider.isProdinCart(
+                                          productId:
+                                              getCurrentProduct.productId)) {
+                                        return;
+                                      }
+                                      cartProvider.addProductToCart(
+                                          productId:
+                                              getCurrentProduct.productId);
                                     },
-                                    icon:  Icon(
-                              cartProvider.isProdinCart(
-                                      productId: getCurrentProduct.productId)
-                                  ? Icons.check
-                                  : Icons.add_shopping_cart_outlined,
-                              size: 20,
-                              color: Colors.red,
-                            ),
-                                    label:  Text(
-                                     cartProvider.isProdinCart(
-                                      productId: getCurrentProduct.productId)
-                                  ? "In Cart": "Add to Cart",
+                                    icon: Icon(
+                                      cartProvider.isProdinCart(
+                                              productId:
+                                                  getCurrentProduct.productId)
+                                          ? Icons.check
+                                          : Icons.add_shopping_cart_outlined,
+                                      size: 20,
+                                      color: Colors.red,
+                                    ),
+                                    label: Text(
+                                      cartProvider.isProdinCart(
+                                              productId:
+                                                  getCurrentProduct.productId)
+                                          ? "In Cart"
+                                          : "Add to Cart",
                                       style: const TextStyle(color: Colors.red),
                                     ),
                                   ),

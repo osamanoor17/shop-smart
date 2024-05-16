@@ -37,10 +37,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) {
           return CartProvider();
         }),
-        ChangeNotifierProvider(create: (_){
+        ChangeNotifierProvider(create: (_) {
           return WishlistProvider();
         }),
-        ChangeNotifierProvider(create: (_){
+        ChangeNotifierProvider(create: (_) {
           return ViewedProdProvider();
         })
       ],
@@ -51,7 +51,6 @@ class MyApp extends StatelessWidget {
           theme: Styles.themeData(
               isDarkTheme: themeProvider.getIsDarkTheme, context: context),
           home: const LoginScreen(),
-          // home: RootScreen(),
           routes: {
             ForgotPasswordScreen.routeName: (context) =>
                 const ForgotPasswordScreen(),
