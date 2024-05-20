@@ -10,7 +10,6 @@ import 'package:shopsmart_user/screens/inner_screens/product_details.dart';
 import 'package:shopsmart_user/screens/inner_screens/viewed_recently.dart';
 import 'package:shopsmart_user/screens/inner_screens/wishlist_screen.dart';
 import 'package:shopsmart_user/screens/search/search_screen.dart';
-
 import 'consts/theme_data.dart';
 import 'screens/auth/forgot_password.dart';
 import 'screens/auth/login_screen.dart';
