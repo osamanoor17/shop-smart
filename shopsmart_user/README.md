@@ -1,16 +1,45 @@
-# shopsmart_user
+# 🛍️ Shop Smart User App
 
-A new Flutter project.
+**ShopSmart User** is a Flutter-based mobile shopping application designed to deliver a smooth and feature-rich user experience for online shopping.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📱 Features
 
-A few resources to get you started if this is your first Flutter project:
+- 🔐 **Authentication** – Login, Register, and Forgot Password screens  
+- 🛒 **Cart Management** – Add, update, and remove items from cart  
+- 🧭 **Explore Products** – Browse and discover new items  
+- 📄 **Product Details** – View detailed information about each product  
+- ❤️ **Wishlist** – Save products to your wishlist  
+- 👁️ **Recently Viewed** – Quickly access recently viewed items  
+- 📦 **Orders Screen** – Track and manage your orders  
+- 👤 **Profile Screen** – Manage personal information  
+- 🔍 **Search Functionality** – Find products easily using the search feature  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🔧 Tech Stack
+
+- **Flutter** for mobile development  
+- **Firebase** (optional for backend services – contact below to contribute)
+
+---
+
+## 🌐 Part of the Shop Smart System
+
+- `shopsmart_user` – User app (this repo)  
+- `shopsmart_admin` – Admin panel for management  
+
+---
+
+## 🤝 Want to Contribute?
+
+If you're interested in contributing to the app or helping with Firebase integration:
+
+📧 Contact: **mosamanoor17@gmail.com**
+
+---
+
+## 📜 License
+
+This project is open for educational and personal use. For any commercial use, reach out via email.
