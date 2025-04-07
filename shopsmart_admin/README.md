@@ -1,16 +1,42 @@
-# shopsmart_admin
+# 🛠️ Shop Smart Admin Panel
 
-A new Flutter project.
+**ShopSmart Admin** is the backend management interface of the Shop Smart application. It is built using Flutter and is designed to help admins efficiently manage users, products, and orders.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Features
 
-A few resources to get you started if this is your first Flutter project:
+- 🧑‍💼 **User Dashboard** – View and manage registered users.  
+- 🛒 **Order Management** – Track and manage all user orders.  
+- 🔍 **Product Search** – Quickly search for products within the catalog.  
+- 📝 **Edit Products** – Update product information such as name, price, and details.  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📦 Project Structure
+
+This is part of the full Shop Smart system, which includes:
+
+- `shopsmart_admin` – Admin panel (this repository)  
+- `shopsmart_user` – User-facing shopping app  
+
+---
+
+## 🔧 Tech Stack
+
+- **Flutter** for UI and logic  
+- **Firebase** (can be integrated for real-time backend features – email below for more info)
+
+---
+
+## 📬 Contribute
+
+If you're interested in contributing or helping integrate Firebase backend:
+
+📧 Email: **mosamanoor17@gmail.com**
+
+---
+
+## 📜 License
+
+For educational or personal use only. For commercial use, contact the author.
