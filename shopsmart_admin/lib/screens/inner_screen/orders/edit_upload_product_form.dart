@@ -127,7 +127,7 @@ class _EditorUploadProductScreenState extends State<EditorUploadProductScreen> {
         },
         child: Scaffold(
           bottomSheet: SizedBox(
-            height: kBottomNavigationBarHeight + 10,
+            height: kBottomNavigationBarHeight + 75,
             child: Material(
               color: Theme.of(context).scaffoldBackgroundColor,
               child: Row(
@@ -292,7 +292,7 @@ class _EditorUploadProductScreenState extends State<EditorUploadProductScreen> {
                           return null;
                         },
                         style: const TextStyle(
-                          color: Colors.black, // Text color
+                          color: Colors.red, // Text color
                           fontSize: 16.0, // Font size
                         ),
                         elevation: 2,
